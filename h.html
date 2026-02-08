@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashwath Pritvi | Electronics & Communication Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background: #0f172a;
+            --foreground: #e2e8f0;
+            --primary: #22d3ee;
+            --muted: #94a3b8;
+            --card: #1e293b;
+            --border: #334155;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+        }
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(34, 211, 238, 0.1);
+        }
+        .skill-tag {
+            transition: all 0.2s ease;
+        }
+        .skill-tag:hover {
+            background-color: #22d3ee;
+            color: #0f172a;
+            transform: scale(1.05);
+        }
+        .timeline-dot {
+            box-shadow: 0 0 0 4px var(--background), 0 0 0 6px var(--primary);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #22d3ee;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Added modal and interactive element styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.8);
+            z-index: 100;
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            background-color: #1e293b;
+            border-radius: 1.5rem;
+            border: 1px solid #334155;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        .collapsible {
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+        .collapsible.active {
+            background-color: #22d3ee;
+            color: #0f172a;
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .collapsible-content.active {
+            max-height: 500px;
+        }
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-slide-in {
+            animation: slideInUp 0.6s ease-out;
+        }
+        .fade-in-delay {
+            animation: slideInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#0f172a]/80 border-b border-[#334155]">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="font-display text-xl font-bold gradient-text">AP</a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about" class="nav-link text-[#94a3b8] hover:text-[#e2e8f0] transition-colors text-sm uppercase tracking-wider">About</a>
+                <a href="#education" class="nav-link text-[#94a3b8] hover:text-[#e2e8f0] transition-colors text-sm uppercase tracking-wider">Education</a>
+                <a href="#projects" class="nav-link text-[#94a3b8] hover:text-[#e2e8f0] transition-colors text-sm uppercase tracking-wider">Projects</a>
+                <a href="#ncc" class="nav-link text-[#94a3b8] hover:text-[#e2e8f0] transition-colors text-sm uppercase tracking-wider">NCC</a>
+                <a href="#skills" class="nav-link text-[#94a3b8] hover:text-[#e2e8f0] transition-colors text-sm uppercase tracking-wider">Skills</a>
+                <a href="#contact" class="nav-link text-[#94a3b8] hover:text-[#e2e8f0] transition-colors text-sm uppercase tracking-wider">Contact</a>
+            </div>
+            <a href="mailto:ashwathpritvi@gmail.com" class="hidden md:inline-flex px-4 py-2 bg-[#22d3ee] text-[#0f172a] rounded-lg font-medium text-sm hover:bg-[#06b6d4] transition-colors">
+                Get in Touch
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20">
+        <div class="max-w-6xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="order-2 lg:order-1 animate-slide-in">
+                <p class="text-[#22d3ee] font-medium mb-4 tracking-wider uppercase text-sm">Electronics & Communication Engineer</p>
+                <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                    <span class="text-[#e2e8f0]">Ashwath</span><br>
+                    <span class="gradient-text">Pritvi</span>
+                </h1>
+                <p class="text-[#94a3b8] text-lg leading-relaxed mb-8 max-w-xl">
+                    Electronics and Communication Engineering graduate with strong fundamentals in semiconductor devices, digital systems, and computer architecture. Aiming to pursue higher studies and apply core hardware knowledge to advanced semiconductor, VLSI, and high-performance computing system development.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects" class="px-6 py-3 bg-[#22d3ee] text-[#0f172a] rounded-lg font-semibold hover:bg-[#06b6d4] transition-colors flex items-center gap-2">
+                        View Projects
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                    <a href="https://github.com/AshwathPritvi" target="_blank" class="px-6 py-3 border border-[#334155] text-[#e2e8f0] rounded-lg font-semibold hover:border-[#22d3ee] hover:text-[#22d3ee] transition-colors flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        GitHub
+                    </a>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2 flex justify-center animate-slide-in">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#22d3ee] to-[#06b6d4] rounded-full blur-3xl opacity-20 scale-110"></div>
+                    <img 
+                        src="/images/lorna-20alvarado.png" 
+                        alt="Ashwath Pritvi" 
+                        class="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-[#334155] shadow-2xl"
+                        style="object-position: center;"
+                    >
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-[#1e293b]/50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="font-display text-3xl font-bold text-[#e2e8f0]">About Me</h2>
+                <div class="flex-1 h-px bg-[#334155]"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-[#1e293b] rounded-2xl p-6 border border-[#334155]">
+                    <div class="w-12 h-12 bg-[#22d3ee]/10 rounded-xl flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#22d3ee]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-[#e2e8f0] text-lg mb-2">Hardware Enthusiast</h3>
+                    <p class="text-[#94a3b8] text-sm leading-relaxed">Passionate about semiconductor devices, VLSI design, and computer architecture fundamentals.</p>
+                </div>
+                <div class="card-hover bg-[#1e293b] rounded-2xl p-6 border border-[#334155]">
+                    <div class="w-12 h-12 bg-[#22d3ee]/10 rounded-xl flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#22d3ee]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-[#e2e8f0] text-lg mb-2">Problem Solver</h3>
+                    <p class="text-[#94a3b8] text-sm leading-relaxed">Strong analytical skills in circuit analysis, simulation, and hands-on debugging experience.</p>
+                </div>
+                <div class="card-hover bg-[#1e293b] rounded-2xl p-6 border border-[#334155]">
+                    <div class="w-12 h-12 bg-[#22d3ee]/10 rounded-xl flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#22d3ee]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-[#e2e8f0] text-lg mb-2">Disciplined & Consistent</h3>
+                    <p class="text-[#94a3b8] text-sm leading-relaxed">Committed to continuous learning with a disciplined approach to engineering challenges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="font-display text-3xl font-bold text-[#e2e8f0]">Education</h2>
+                <div class="flex-1 h-px bg-[#334155]"></div>
+            </div>
+            <!-- Added collapsible education timeline with multiple education levels -->
+            <div class="space-y-4">
+                <!-- Bachelor's Degree -->
+                <div class="bg-[#1e293b] rounded-2xl border border-[#334155] overflow-hidden">
+                    <button class="collapsible w-full p-6 flex items-center justify-between hover:bg-[#334155] transition-colors" onclick="toggleCollapsible(this)">
+                        <div class="text-left">
+                            <span class="inline-block px-3 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-medium mb-2">2025 - 2029</span>
+                            <h3 class="font-display text-xl font-bold text-[#e2e8f0]">St. Aloysius Deemed to be University</h3>
+                            <p class="text-[#94a3b8]">Bachelor of Engineering – Electronics & Communication Engineering</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#22d3ee] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                    </button>
+                    <div class="collapsible-content px-6 pb-6 text-[#94a3b8]">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-[#22d3ee] font-bold text-2xl">8.0</span>
+                            <span>CGPA (Current)</span>
+                        </div>
+                        <p>Core focus on semiconductor devices, digital systems, and computer architecture fundamentals.</p>
+                    </div>
+                </div>
+
+                <!-- Pre-University Course -->
+                <div class="bg-[#1e293b] rounded-2xl border border-[#334155] overflow-hidden">
+                    <button class="collapsible w-full p-6 flex items-center justify-between hover:bg-[#334155] transition-colors" onclick="toggleCollapsible(this)">
+                        <div class="text-left">
+                            <span class="inline-block px-3 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-medium mb-2">2023 - 2025</span>
+                            <h3 class="font-display text-xl font-bold text-[#e2e8f0]">St. Mary English Medium School</h3>
+                            <p class="text-[#94a3b8]">Pre-University Course (PCMB)</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#22d3ee] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                    </button>
+                    <div class="collapsible-content px-6 pb-6 text-[#94a3b8]">
+                        <p class="mb-2"><strong class="text-[#e2e8f0]">Percentage:</strong> 74%</p>
+                        <p>Focused on Physics, Chemistry, Mathematics, and Biology preparing for engineering entrance.</p>
+                    </div>
+                </div>
+
+                <!-- Secondary School -->
+                <div class="bg-[#1e293b] rounded-2xl border border-[#334155] overflow-hidden">
+                    <button class="collapsible w-full p-6 flex items-center justify-between hover:bg-[#334155] transition-colors" onclick="toggleCollapsible(this)">
+                        <div class="text-left">
+                            <span class="inline-block px-3 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-medium mb-2">2023</span>
+                            <h3 class="font-display text-xl font-bold text-[#e2e8f0]">Madhava Kripa School, Manipal</h3>
+                            <p class="text-[#94a3b8]">Secondary School (SSLC – 10th)</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#22d3ee] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                    </button>
+                    <div class="collapsible-content px-6 pb-6 text-[#94a3b8]">
+                        <p class="mb-2"><strong class="text-[#e2e8f0]">Percentage:</strong> 79%</p>
+                        <p>Foundation in various academic subjects with strong fundamentals across STEM disciplines.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-[#1e293b]/50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="font-display text-3xl font-bold text-[#e2e8f0]">Projects</h2>
+                <div class="flex-1 h-px bg-[#334155]"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="card-hover bg-[#1e293b] rounded-2xl overflow-hidden border border-[#334155] group cursor-pointer" onclick="openModal('project1Modal')">
+                    <div class="h-48 bg-gradient-to-br from-[#22d3ee]/20 to-[#06b6d4]/10 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-[#22d3ee]/50 group-hover:text-[#22d3ee] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold text-[#e2e8f0] mb-3">Clap Sensor-Based Light Control System</h3>
+                        <ul class="space-y-2 text-[#94a3b8] text-sm">
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#22d3ee] mt-1">•</span>
+                                Designed clap-activated switching circuit using microphone sensor
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#22d3ee] mt-1">•</span>
+                                Processed sound input to trigger control logic for switching load
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#22d3ee] mt-1">•</span>
+                                Analyzed noise and threshold levels
+                            </li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="skill-tag px-3 py-1 bg-[#334155] text-[#94a3b8] rounded-full text-xs">Analog Electronics</span>
+                            <span class="skill-tag px-3 py-1 bg-[#334155] text-[#94a3b8] rounded-full text-xs">Signal Processing</span>
+                        </div>
+                        <p class="text-[#22d3ee] text-sm mt-4">Click to view details</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="card-hover bg-[#1e293b] rounded-2xl overflow-hidden border border-[#334155] group cursor-pointer" onclick="openModal('project2Modal')">
+                    <div class="h-48 bg-gradient-to-br from-[#22d3ee]/20 to-[#06b6d4]/10 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-[#22d3ee]/50 group-hover:text-[#22d3ee] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display text-xl font-bold text-[#e2e8f0] mb-3">RC Aircraft Design</h3>
+                        <ul class="space-y-2 text-[#94a3b8] text-sm">
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#22d3ee] mt-1">•</span>
+                                Conceptual design using aspect ratio and wing loading
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#22d3ee] mt-1">•</span>
+                                Aerodynamic sizing and propulsion selection
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#22d3ee] mt-1">•</span>
+                                System-level trade-off analysis
+                            </li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="skill-tag px-3 py-1 bg-[#334155] text-[#94a3b8] rounded-full text-xs">Aerodynamics</span>
+                            <span class="skill-tag px-3 py-1 bg-[#334155] text-[#94a3b8] rounded-full text-xs">System Design</span>
+                        </div>
+                        <p class="text-[#22d3ee] text-sm mt-4">Click to view details</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modals -->
+    <div id="project1Modal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content p-8" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <h2 class="font-display text-2xl font-bold text-[#e2e8f0]">Clap Sensor-Based Light Control System</h2>
+                <button onclick="closeModal()" class="text-[#94a3b8] hover:text-[#e2e8f0]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <ul class="space-y-3 text-[#94a3b8] mb-6">
+                <li class="flex gap-3">
+                    <span class="text-[#22d3ee] font-bold">✓</span>
+                    <span>Designed and implemented a clap-activated switching circuit using a microphone sensor</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-[#22d3ee] font-bold">✓</span>
+                    <span>Developed signal conditioning and threshold logic for reliable triggering</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-[#22d3ee] font-bold">✓</span>
+                    <span>Analyzed noise, sensitivity levels, and false triggering issues</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-[#22d3ee] font-bold">✓</span>
+                    <span>Gained hands-on experience in analog signal processing and circuit debugging</span>
+                </li>
+            </ul>
+            <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm">Analog Electronics</span>
+                <span class="px-3 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm">Signal Processing</span>
+                <span class="px-3 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm">Circuit Design</span>
+                <span class="px-3 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm">Debugging</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="project2Modal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content p-8" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <h2 class="font-display text-2xl font-bold text-[#e2e8f0]">RC Aircraft Design (Ongoing)</h2>
+                <button onclick="closeModal()" class="text-[#94a3b8] hover:text-[#e2e8f0]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <ul class="space-y-3 text-[#94a3b8] mb-6">
+                <li class="flex gap-3">
+                    <span class="text-[#22d3ee] font-bold">✓</span>
+                    <span>Performing aircraft conceptual design using aspect ratio, wing loading, and surface area calculations</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-[#22d3ee] font-bold">✓</span>
+                    <span>Working on weight estimation, aerodynamic sizing, and propulsion selection</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-[#22d3ee] font-bold">✓</span>
+                    <span>Evaluating battery, motor, and ESC based on power-to-weight ratio and efficiency</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-[#22d3ee] font-bold">✓</span>
+                    <span>Applying system-level trade-off analysis under real-world constraints</span>
+                </li>
+            </ul>
+            <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm">Aerodynamics</span>
+                <span class="px-3 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm">System Design</span>
+                <span class="px-3 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm">Analysis</span>
+                <span class="px-3 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm">CAD</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- NCC Section -->
+    <section id="ncc" class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="font-display text-3xl font-bold text-[#e2e8f0]">National Cadet Corps (NCC)</h2>
+                <div class="flex-1 h-px bg-[#334155]"></div>
+            </div>
+            <div class="bg-[#1e293b] rounded-2xl p-8 border border-[#334155] card-hover">
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="w-12 h-12 bg-[#22d3ee]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#22d3ee]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 12H9m4 8H9m6-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-2xl font-bold text-[#e2e8f0] mb-2">Active NCC Cadet</h3>
+                        <p class="text-[#94a3b8]">Trained in discipline, leadership, and teamwork</p>
+                    </div>
+                </div>
+                <ul class="space-y-3 text-[#94a3b8]">
+                    <li class="flex items-start gap-3">
+                        <span class="text-[#22d3ee] font-bold text-lg">•</span>
+                        <span>Participated in regular drills, physical training, and organizational activities</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-[#22d3ee] font-bold text-lg">•</span>
+                        <span>Developed time management, responsibility, and decision-making skills</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-[#22d3ee] font-bold text-lg">•</span>
+                        <span>Built strong leadership foundation through structured military training</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-[#1e293b]/50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="font-display text-3xl font-bold text-[#e2e8f0]">Skills & Languages</h2>
+                <div class="flex-1 h-px bg-[#334155]"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Technical Skills -->
+                <div class="bg-[#1e293b] rounded-2xl p-6 border border-[#334155]">
+                    <h3 class="font-display text-xl font-bold text-[#e2e8f0] mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 bg-[#22d3ee]/10 rounded-lg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#22d3ee]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </span>
+                        Technical Skills
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag px-4 py-2 bg-[#334155] text-[#e2e8f0] rounded-lg text-sm font-medium border border-[#334155] cursor-pointer">Analog Electronics</span>
+                        <span class="skill-tag px-4 py-2 bg-[#334155] text-[#e2e8f0] rounded-lg text-sm font-medium border border-[#334155] cursor-pointer">Digital Electronics</span>
+                        <span class="skill-tag px-4 py-2 bg-[#334155] text-[#e2e8f0] rounded-lg text-sm font-medium border border-[#334155] cursor-pointer">Circuit Analysis</span>
+                        <span class="skill-tag px-4 py-2 bg-[#334155] text-[#e2e8f0] rounded-lg text-sm font-medium border border-[#334155] cursor-pointer">Semiconductor Devices</span>
+                        <span class="skill-tag px-4 py-2 bg-[#334155] text-[#e2e8f0] rounded-lg text-sm font-medium border border-[#334155] cursor-pointer">Scilab</span>
+                        <span class="skill-tag px-4 py-2 bg-[#334155] text-[#e2e8f0] rounded-lg text-sm font-medium border border-[#334155] cursor-pointer">C++</span>
+                    </div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="bg-[#1e293b] rounded-2xl p-6 border border-[#334155]">
+                    <h3 class="font-display text-xl font-bold text-[#e2e8f0] mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 bg-[#22d3ee]/10 rounded-lg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#22d3ee]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </span>
+                        Soft Skills
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag px-4 py-2 bg-[#334155] text-[#e2e8f0] rounded-lg text-sm font-medium border border-[#334155] cursor-pointer">Discipline</span>
+                        <span class="skill-tag px-4 py-2 bg-[#334155] text-[#e2e8f0] rounded-lg text-sm font-medium border border-[#334155] cursor-pointer">Consistency</span>
+                        <span class="skill-tag px-4 py-2 bg-[#334155] text-[#e2e8f0] rounded-lg text-sm font-medium border border-[#334155] cursor-pointer">Analytical Thinking</span>
+                        <span class="skill-tag px-4 py-2 bg-[#334155] text-[#e2e8f0] rounded-lg text-sm font-medium border border-[#334155] cursor-pointer">Problem-Solving</span>
+                        <span class="skill-tag px-4 py-2 bg-[#334155] text-[#e2e8f0] rounded-lg text-sm font-medium border border-[#334155] cursor-pointer">Self-Learning</span>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="bg-[#1e293b] rounded-2xl p-6 border border-[#334155]">
+                    <h3 class="font-display text-xl font-bold text-[#e2e8f0] mb-6 flex items-center gap-3">
+                        <span class="w-10 h-10 bg-[#22d3ee]/10 rounded-lg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#22d3ee]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 00.948-.684l1.498-4.493a1 1 0 011.502-.684l1.498 4.493a1 1 0 00.948.684H19a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
+                            </svg>
+                        </span>
+                        Languages
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag px-4 py-2 bg-[#334155] text-[#e2e8f0] rounded-lg text-sm font-medium border border-[#334155] cursor-pointer">English</span>
+                        <span class="skill-tag px-4 py-2 bg-[#334155] text-[#e2e8f0] rounded-lg text-sm font-medium border border-[#334155] cursor-pointer">Hindi</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="font-display text-3xl font-bold text-[#e2e8f0]">Get in Touch</h2>
+                <div class="flex-1 h-px bg-[#334155]"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <a href="tel:+918310769338" class="group card-hover bg-[#1e293b] rounded-2xl p-8 border border-[#334155] text-center">
+                    <div class="w-16 h-16 bg-[#22d3ee]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#22d3ee] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#22d3ee] group-hover:text-[#0f172a] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 00.948-.684l1.498-4.493a1 1 0 011.502-.684l1.498 4.493a1 1 0 00.948.684H19a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-[#e2e8f0] mb-2">Phone</h3>
+                    <p class="text-[#94a3b8] hover:text-[#22d3ee] transition-colors">+91 8310769338</p>
+                </a>
+
+                <a href="mailto:ashwathpritvi@gmail.com" class="group card-hover bg-[#1e293b] rounded-2xl p-8 border border-[#334155] text-center">
+                    <div class="w-16 h-16 bg-[#22d3ee]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#22d3ee] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#22d3ee] group-hover:text-[#0f172a] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-[#e2e8f0] mb-2">Email</h3>
+                    <p class="text-[#94a3b8] hover:text-[#22d3ee] transition-colors break-all">ashwathpritvi@gmail.com</p>
+                </a>
+
+                <a href="https://github.com/AshwathPritvi" target="_blank" class="group card-hover bg-[#1e293b] rounded-2xl p-8 border border-[#334155] text-center">
+                    <div class="w-16 h-16 bg-[#22d3ee]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#22d3ee] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#22d3ee] group-hover:text-[#0f172a] transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-[#e2e8f0] mb-2">GitHub</h3>
+                    <p class="text-[#94a3b8] hover:text-[#22d3ee] transition-colors">AshwathPritvi</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-[#334155] bg-[#1e293b]/50">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p class="text-[#94a3b8]">© 2026 Ashwath Pritvi. All rights reserved. | Based in India</p>
+        </div>
+    </footer>
+
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+        }
+
+        function closeModal(event) {
+            if (event && event.target.id) {
+                const modal = document.getElementById(event.target.id);
+                modal.classList.remove('active');
+            } else {
+                event = event || window.event;
+                const modal = event.target.closest('.modal');
+                if (modal) modal.classList.remove('active');
+            }
+        }
+
+        function toggleCollapsible(button) {
+            const content = button.nextElementSibling;
+            button.classList.toggle('active');
+            content.classList.toggle('active');
+            
+            const svg = button.querySelector('svg');
+            if (svg) {
+                svg.style.transform = button.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+            }
+        }
+
+        // Close modal when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal.active');
+                modals.forEach(modal => modal.classList.remove('active'));
+            }
+        });
+    </script>
+</body>
+</html>
