@@ -6,6 +6,7 @@
     <title>Ashwath Pritvi | Electronics & Communication Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -161,6 +162,21 @@
         .education-card:hover .marks-info {
             display: block !important;
         }
+        #chem-canvas-container {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .photo-wrapper {
+            position: relative;
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -184,6 +200,8 @@
 
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center pt-20">
+        <canvas id="molecule-bg"></canvas>
+
         <div class="max-w-6xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
             <div class="order-2 lg:order-1 animate-slide-in">
                 <p class="text-[#22d3ee] font-medium mb-4 tracking-wider uppercase text-sm">Electronics & Communication Engineer</p>
@@ -210,8 +228,9 @@
                 </div>
             </div>
             <div class="order-1 lg:order-2 flex justify-center animate-slide-in">
-                <div class="relative">
-                    <div class="absolute inset-0 bg-gradient-to-br from-[#22d3ee] to-[#06b6d4] rounded-full blur-3xl opacity-20 scale-110"></div>
+                <div class="relative photo-wrapper">
+                    <div id="chem-canvas-container"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#22d3ee] to-[#06b6d4] rounded-full blur-3xl opacity-20 scale-110 pointer-events-none"></div>
                     <img 
                         src="images/P.jpg" 
                         alt="Ashwath Pritvi" 
@@ -668,6 +687,11 @@
                 modals.forEach(modal => modal.classList.remove('active'));
             }
         });
+        
+        
     </script>
+ <script src="dynamic.js"></script>
 </body>
 </html>
+
+
