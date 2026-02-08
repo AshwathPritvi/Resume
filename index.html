@@ -135,6 +135,32 @@
         .fade-in-delay {
             animation: slideInUp 0.6s ease-out;
         }
+        .marks-info {
+            display: none !important;
+            transition: display 0.3s ease;
+        }
+        .collapsible.active + .collapsible-content .marks-info {
+            display: block !important;
+        }
+        .education-card {
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .education-card:hover {
+            transform: scale(1.05) translateZ(0);
+            z-index: 40;
+            box-shadow: 0 25px 50px rgba(34, 211, 238, 0.2);
+        }
+        .space-y-4:has(.education-card:hover) .education-card:not(:hover) {
+            filter: blur(2px);
+            opacity: 0.6;
+        }
+        .education-card:hover .collapsible-content {
+            max-height: 500px !important;
+        }
+        .education-card:hover .marks-info {
+            display: block !important;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -246,7 +272,7 @@
             <!-- Added collapsible education timeline with multiple education levels -->
             <div class="space-y-4">
                 <!-- Bachelor's Degree -->
-                <div class="bg-[#1e293b] rounded-2xl border border-[#334155] overflow-hidden">
+                <div class="education-card bg-[#1e293b] rounded-2xl border border-[#334155] overflow-hidden">
                     <button class="collapsible w-full p-6 flex items-center justify-between transition-colors" onclick="toggleCollapsible(this)">
                         <div class="text-left">
                             <span class="inline-block px-3 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-medium mb-2">2025 - 2029</span>
@@ -258,16 +284,18 @@
                         </svg>
                     </button>
                     <div class="collapsible-content px-6 pb-6 text-[#94a3b8]">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="text-[#22d3ee] font-bold text-2xl">8.5</span>
-                            <span>CGPA (Current)</span>
+                        <div class="marks-info">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="text-[#22d3ee] font-bold text-2xl">8.5</span>
+                                <span>CGPA (Current)</span>
+                            </div>
                         </div>
                         <p>Core focus on semiconductor devices, digital systems, and computer architecture fundamentals.</p>
                     </div>
                 </div>
 
                 <!-- Pre-University Course -->
-                <div class="bg-[#1e293b] rounded-2xl border border-[#334155] overflow-hidden">
+                <div class="education-card bg-[#1e293b] rounded-2xl border border-[#334155] overflow-hidden">
                     <button class="collapsible w-full p-6 flex items-center justify-between transition-colors" onclick="toggleCollapsible(this)">
                         <div class="text-left">
                             <span class="inline-block px-3 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-medium mb-2">2023 - 2025</span>
@@ -279,13 +307,13 @@
                         </svg>
                     </button>
                     <div class="collapsible-content px-6 pb-6 text-[#94a3b8]">
-                        <p class="mb-2"><strong class="text-[#e2e8f0]">Percentage:</strong> 74%</p>
+                        <p class="mb-2 marks-info"><strong class="text-[#e2e8f0]">Percentage:</strong> 74%</p>
                         <p>Focused on Physics, Chemistry, Mathematics, and Biology preparing for engineering entrance.</p>
                     </div>
                 </div>
 
                 <!-- Secondary School -->
-                <div class="bg-[#1e293b] rounded-2xl border border-[#334155] overflow-hidden">
+                <div class="education-card bg-[#1e293b] rounded-2xl border border-[#334155] overflow-hidden">
                     <button class="collapsible w-full p-6 flex items-center justify-between transition-colors" onclick="toggleCollapsible(this)">
                         <div class="text-left">
                             <span class="inline-block px-3 py-1 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-medium mb-2">2023</span>
@@ -297,7 +325,7 @@
                         </svg>
                     </button>
                     <div class="collapsible-content px-6 pb-6 text-[#94a3b8]">
-                        <p class="mb-2"><strong class="text-[#e2e8f0]">Percentage:</strong> 79%</p>
+                        <p class="mb-2 marks-info"><strong class="text-[#e2e8f0]">Percentage:</strong> 79%</p>
                         <p>Foundation in various academic subjects with strong fundamentals across STEM disciplines.</p>
                     </div>
                 </div>
